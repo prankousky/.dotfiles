@@ -849,75 +849,75 @@ function theme.at_screen_connect(s)
     -- Create a taglist widget
     s._taglist = awful.widget.taglist(s, rowfilter, awful.util.taglist_buttons)
 
-    -- -- Create a tasklist widget
-    -- s._tasklist = awful.widget.tasklist(s,
-    -- awful.widget.tasklist.filter.currenttags,
-    -- awful.util.tasklist_buttons, {
-    --     bg_focus = theme.tasklist_bg_focus,
-    --     shape = function(cr, width, height)
-    --                 gears.shape.rounded_rect(cr, width, height, theme.border_radius or 0)
-    --             end,
-    --     shape_border_width = dpi(0),
-    --     shape_border_color = theme.tasklist_bg_normal,
-    --     align = "center" })
-
     -- Create a tasklist widget
-    s._tasklist = awful.widget.tasklist {
-        screen = s,
-        filter = awful.widget.tasklist.filter.currenttags,
-        buttons = awful.util.tasklist_buttons,
+    s._tasklist = awful.widget.tasklist(s,
+    awful.widget.tasklist.filter.currenttags,
+    awful.util.tasklist_buttons, {
         bg_focus = theme.tasklist_bg_focus,
-        style = {
-            shape = function(cr, width, height)
-                gears.shape.rounded_rect(cr, width, height, theme.border_radius or 0)
-            end,
-            shape_border_width = dpi(0),
-            shape_border_color = theme.tasklist_bg_normal,
-        },
-        widget_template = {
-            {
-                {
-                    {
-                        layout = wibox.layout.fixed.horizontal,
-                        {
-                            id     = 'text_role',
-                            widget = wibox.widget.textbox,
-                        },
-                    },
-                    halign = 'center',
-                    valign = 'center',
-                    widget = wibox.container.place,
-                },
-                left = 20,
-                right = 20,
-                widget = wibox.container.margin,
-            },
-            create_callback = function(self, c, index, objects) --luacheck: no unused args
-                local tooltip = awful.tooltip {
-                    objects = { self },
-                    delay_show = 1,
-                    timer_function = function()
-                        return c.name
-                    end,
-                    align = "bottom",
-                    mode = "outside",
-                    preferred_positions = { "bottom" },
-                }
-            end,
-            id = 'background_role',
-            widget = wibox.container.background,
-        },
-        layout = {
-            layout = wibox.layout.flex.horizontal,
-            spacing = 10,
-            spacing_widget = {
-                vert_sep,
-                valign = 'center',
-                halign = 'center',
-                widget = wibox.container.place,
-            },
-        },
-    }
+        shape = function(cr, width, height)
+                    gears.shape.rounded_rect(cr, width, height, theme.border_radius or 0)
+                end,
+        shape_border_width = dpi(0),
+        shape_border_color = theme.tasklist_bg_normal,
+        align = "center" })
+
+    -- -- Create a tasklist widget
+    -- s._tasklist = awful.widget.tasklist {
+    --     screen = s,
+    --     filter = awful.widget.tasklist.filter.currenttags,
+    --     buttons = awful.util.tasklist_buttons,
+    --     bg_focus = theme.tasklist_bg_focus,
+    --     style = {
+    --         shape = function(cr, width, height)
+    --             gears.shape.rounded_rect(cr, width, height, theme.border_radius or 0)
+    --         end,
+    --         shape_border_width = dpi(0),
+    --         shape_border_color = theme.tasklist_bg_normal,
+    --     },
+    --     widget_template = {
+    --         {
+    --             {
+    --                 {
+    --                     layout = wibox.layout.fixed.horizontal,
+    --                     {
+    --                         id     = 'text_role',
+    --                         widget = wibox.widget.textbox,
+    --                     },
+    --                 },
+    --                 halign = 'center',
+    --                 valign = 'center',
+    --                 widget = wibox.container.place,
+    --             },
+    --             left = 20,
+    --             right = 20,
+    --             widget = wibox.container.margin,
+    --         },
+    --         create_callback = function(self, c, index, objects) --luacheck: no unused args
+    --             local tooltip = awful.tooltip {
+    --                 objects = { self },
+    --                 delay_show = 1,
+    --                 timer_function = function()
+    --                     return c.name
+    --                 end,
+    --                 align = "bottom",
+    --                 mode = "outside",
+    --                 preferred_positions = { "bottom" },
+    --             }
+    --         end,
+    --         id = 'background_role',
+    --         widget = wibox.container.background,
+    --     },
+    --     layout = {
+    --         layout = wibox.layout.flex.horizontal,
+    --         spacing = 10,
+    --         spacing_widget = {
+    --             vert_sep,
+    --             valign = 'center',
+    --             halign = 'center',
+    --             widget = wibox.container.place,
+    --         },
+    --     },
+    -- }
 
     -- Create the wibox
     s._wibox = awful.wibar {
